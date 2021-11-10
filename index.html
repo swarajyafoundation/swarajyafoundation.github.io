@@ -1,49 +1,138 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<title>Save Web Form Data to Spreadsheets - Contact Form</title>
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
-<script>
-function SubForm (){
-    $.ajax({
-        url:'https://api.apispreadsheets.com/data/20306/',
-        type:'post',
-        data:$("#myForm").serializeArray(),
-        success: function(){
-          alert("Form Data Submitted :)")
-        },
-        error: function(){
-          alert("There was an error :(")
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Swarajya Foundation">
+    <meta name="author" content="Vishal Potle">
+    <meta name="keywords" content="Swarajya Foundation">
+
+    <!-- Title Page-->
+    <title>Swarajya Foundation Registration</title>
+
+    <!-- Icons font CSS-->
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="css/main.css" rel="stylesheet" media="all">
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous"></script>
+      <script>
+        function SubForm (){
+            $.ajax({
+                url:'https://api.apispreadsheets.com/data/20306/',
+                type:'post',
+                data:$("#myForm").serializeArray(),
+                success: function(){
+                  alert("Form Data Submitted Successfully :)")
+                },
+                error: function(){
+                  alert("There was an error :(")
+                }
+            });
         }
-    });
-}
-</script>
+      </script>
 </head>
+
 <body>
-  <form id="myForm">
-    <label>Full Name</label>
-    <br/>
-    <input name="full_name" />
-    <br/>
-    <label>Email</label>
-    <br/>
-    <input name="email" />
-    <br/>
-    <label>Age</label>
-    <br/>
-    <input type="radio" id="age" name="age" value="18-35" /> 18-35<br/>
-    <input type="radio" id="age" name="age" value="35+" /> 35+<br/>
-    <br/>
-    <label>Message</label>
-    <br/>
-    <textarea name="message">
-    </textarea>
-    <br/>
-    <br/>
-  </form>
-  <button onclick="SubForm()">Submit</button>
+    <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-1">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title"><u>SWARAJYA FOUNDATION REGISTRATION FORM</u></h2>
+                    <form id="myForm">
+                      <input  id="currentDate" type="hidden" name="Date_Of_Joining">
+                      <input  type="hidden" name="Status" value="Unverified">
+                        <div class="input-group">
+                            <input pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Enter your valid full name!')" class="input--style-1" type="text" placeholder="NAME" name="Name" required>
+                        </div>
+                        <div class="input-group">
+                          <input class="input--style-1" oninvalid="setCustomValidity('Enter your valid address!')" type="text" placeholder="ADDRESS" name="Address" required>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1 js-datepicker" oninvalid="setCustomValidity('Select valid birth date!')" type="text" placeholder="BIRTHDATE" name="Date_Of_Birth" required>
+                                    <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select oninvalid="setCustomValidity('Select your gender!')" name="Gender" required>
+                                            <option disabled="disabled" selected="selected">GENDER</option>
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                            <option>Other</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" oninvalid="setCustomValidity('Enter valid mobile number. Mobile number should be 10 digit!')" pattern="^\d{10}$" type="tel" placeholder="MOBILE" name="Mobile">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                              <div class="input-group">
+                                  <input pattern="^[1-9][0-9]{5}$"  oninvalid="setCustomValidity('Enter valid area pincode!')" title="" class="input--style-1" type="text" placeholder="PINCODE" name="Pincode" required >
+                              </div>
+                          </div>
+                        </div>
+                        <div class="input-group">
+                          <input pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" oninvalid="setCustomValidity('Enter valid email address!')" class="input--style-1" type="text" placeholder="Email" name="Email" required>
+                        </div>
+                        <div class="input-group">
+                          <input rows="5" oninvalid="setCustomValidity('Write something about your self!')" class="input--style-1" type="text" placeholder="Describe Your Self" name="Summary" required>
+                        </div>
+                        <div class="center-align">
+                          <u>Founder</u> : <h3>Vishal Potle</h3>
+                        </div>
+                        <div class="">
+                          <h4>Note :-</h4>
+                          <ul class="note-style">
+                            <li>You have to pay Rs.150/- for registration in that you get an identity card from SWARAJYA FOUNDATION.</li>
+                            <li>Documentw Needed [Aadhar Card, Passport Size Photo].</li>
+                          </ul>
+                          
+                        </div>
+                        <div class="p-t-20 center-align">  
+                            <button class="btn btn--radius btn--green text" onclick="SubForm()" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/datepicker/moment.min.js"></script>
+    <script src="vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="js/global.js"></script>
+    <script src="js/custom.js"></script>
+
 </body>
+
 </html>
+<!-- end document-->
