@@ -12,6 +12,7 @@
     <!-- Title Page-->
     <title>Swarajya Foundation Registration</title>
 
+    
     <!-- Icons font CSS-->
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -25,54 +26,50 @@
     <!-- Main CSS-->
     <link href="css/main.css" rel="stylesheet" media="all">
 
-    <script
+    <!-- <script
       src="https://code.jquery.com/jquery-3.4.1.js"
       integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-      crossorigin="anonymous"></script>
-      <script>
-        function SubForm (){
-            $.ajax({
-                url:'https://api.apispreadsheets.com/data/20306/',
-                type:'post',
-                data:$("#myForm").serializeArray(),
-                success: function(){
-                  alert("Form Data Submitted Successfully :)")
-                },
-                error: function(){
-                  alert("There was an error :(")
-                }
-            });
-        }
-      </script>
+      crossorigin="anonymous"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
 </head>
 
 <body>
+  <div class="content">
+    <div class="loading">
+ <p>loading</p>
+       <span></span>
+    </div>
+ </div>
     <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
         <div class="wrapper wrapper--w680">
             <div class="card card-1">
                 <div class="card-heading"></div>
                 <div class="card-body">
-                    <h2 class="title"><u>SWARAJYA FOUNDATION REGISTRATION FORM</u></h2>
+                    <h2 class="title color-yellow"><i><u>SWARAJYA FOUNDATION REGISTRATION FORM</u></i></h2>
                     <form id="myForm">
                       <input  id="currentDate" type="hidden" name="Date_Of_Joining">
                       <input  type="hidden" name="Status" value="Unverified">
-                        <div class="input-group">
-                            <input pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Enter your valid full name!')" class="input--style-1" type="text" placeholder="NAME" name="Name" required>
+                        <div class="input-group" id="nameId">
+                            <input class="input--style-1" type="text" placeholder="NAME" name="Name">
                         </div>
-                        <div class="input-group">
-                          <input class="input--style-1" oninvalid="setCustomValidity('Enter your valid address!')" type="text" placeholder="ADDRESS" name="Address" required>
+                        <div class="input-group" id="addressId">
+                          <input class="input--style-1"  type="text" placeholder="ADDRESS" name="Address">
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
-                                <div class="input-group">
-                                    <input class="input--style-1 js-datepicker" oninvalid="setCustomValidity('Select valid birth date!')" type="text" placeholder="BIRTHDATE" name="Date_Of_Birth" required>
+                                <div class="input-group" id="dobId">
+                                    <input class="input--style-1 js-datepicker" type="text" placeholder="BIRTHDATE" name="Date_Of_Birth">
                                     <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div class="input-group">
+                                <div class="input-group" id="genderId">
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        <select oninvalid="setCustomValidity('Select your gender!')" name="Gender" required>
+                                        <select  name="Gender" id="genderOptions">
                                             <option disabled="disabled" selected="selected">GENDER</option>
                                             <option>Male</option>
                                             <option>Female</option>
@@ -85,35 +82,38 @@
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
-                                <div class="input-group">
-                                    <input class="input--style-1" oninvalid="setCustomValidity('Enter valid mobile number. Mobile number should be 10 digit!')" pattern="^\d{10}$" type="tel" placeholder="MOBILE" name="Mobile">
+                                <div class="input-group" id="mobileId">
+                                    <input class="input--style-1"  type="tel" placeholder="MOBILE" name="Mobile">
                                 </div>
                             </div>
                             <div class="col-2">
-                              <div class="input-group">
-                                  <input pattern="^[1-9][0-9]{5}$"  oninvalid="setCustomValidity('Enter valid area pincode!')" title="" class="input--style-1" type="text" placeholder="PINCODE" name="Pincode" required >
+                              <div class="input-group" id="pincodeId">
+                                  <input pattern="^[1-9][0-9]{5}$" title="" class="input--style-1" type="text" placeholder="PINCODE" name="Pincode">
                               </div>
                           </div>
                         </div>
-                        <div class="input-group">
-                          <input pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" oninvalid="setCustomValidity('Enter valid email address!')" class="input--style-1" type="text" placeholder="Email" name="Email" required>
+                        <div class="input-group" id="emailId">
+                          <input class="input--style-1" type="text" placeholder="Email" name="Email">
                         </div>
-                        <div class="input-group">
-                          <input rows="5" oninvalid="setCustomValidity('Write something about your self!')" class="input--style-1" type="text" placeholder="Describe Your Self" name="Summary" required>
+                        <div class="input-group" id="summaryId">
+                          <input rows="5" class="input--style-1" type="text" placeholder="Describe Your Self" name="Summary">
                         </div>
-                        <div class="center-align">
-                          <u>Founder</u> : <h3>Vishal Potle</h3>
-                        </div>
-                        <div class="">
-                          <h4>Note :-</h4>
-                          <ul class="note-style">
-                            <li>You have to pay Rs.150/- for registration in that you get an identity card from SWARAJYA FOUNDATION.</li>
-                            <li>Documents Needed [Aadhar Card, Passport Size Photo].</li>
-                          </ul>
-                          
+                        <div class="center-align color-red" id="errorMsg"></div>
+                        <div class="info-section">
+                          <div class="center-align">
+                            <u><i>Founder</i></u> : <h3>Vishal Potle</h3>
+                          </div>
+                          <div class=""><i>
+                            <h4>Note :-</h4>
+                            <ul class="note-style">
+                              <li>You have to pay Rs.150/- for registration in that you get an identity card from SWARAJYA FOUNDATION.</li>
+                              <li>Documents Needed [Aadhar Card, Passport Size Photo].</li>
+                            </ul>
+                            </i>
+                          </div>
                         </div>
                         <div class="p-t-20 center-align">  
-                            <button class="btn btn--radius btn--green text" onclick="SubForm()" type="submit">Submit</button>
+                            <button id="submitButton" class="btn btn--radius btn--green text" onclick="SubForm()" type="button">SUBMIT</button>
                         </div>
                     </form>
                 </div>
@@ -130,7 +130,102 @@
 
     <!-- Main JS-->
     <script src="js/global.js"></script>
-    <script src="js/custom.js"></script>
+    <script>
+
+      function SubForm () {
+        $("#errorMsg").empty();
+        $(".input-group").removeClass('bottom-color-red')
+        $("#submitButton").prop("disabled", true);
+        var name = $("input[name='Name']").val()
+        var address = $("input[name='Address']").val()
+        var dob = $("input[name='Date_Of_Birth']").val()
+        var gender = $("#genderOptions :selected").val()
+        var mobile = $("input[name='Mobile']").val()
+        var pincode = $("input[name='Pincode']").val()
+        var email = $("input[name='Email']").val()
+        var summary = $("input[name='Summary']").val()
+        var doj = $("input[name='Date_Of_Joining']").val()
+        var status = $("input[name='Status']").val()
+
+        if(!name.match(/[a-zA-Z]+/)) {
+          $("#errorMsg").text("Please Enter Your Full Name!")
+          $("#nameId").addClass('bottom-color-red');
+          $("#submitButton").prop("disabled", false);
+          return
+        }
+        else if(address.trim()=="") {
+          $("#errorMsg").text("Please Enter Your Validate Address!")
+          $("#addressId").addClass('bottom-color-red');
+          $("#submitButton").prop("disabled", false);
+          return
+        } 
+        else if(!dob.match(/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/)) {
+          $("#errorMsg").text("Please Select Validate Date!")
+          $("#dobId").addClass('bottom-color-red');
+          $("#submitButton").prop("disabled", false);
+          return
+        } 
+        else if(!gender || gender.trim()=="" || gender.trim()=="GENDER") {
+          $("#errorMsg").text("Please Select Gender!")
+          $("#genderId").addClass('bottom-color-red');
+          $("#submitButton").prop("disabled", false);
+          return
+        }
+        else if(!mobile.match(/^\d{10}$/)) {
+          $("#errorMsg").text("Mobile Number Should Be 10 Digit!")
+          $("#mobileId").addClass('bottom-color-red');
+          $("#submitButton").prop("disabled", false);
+          return
+        } 
+        else if(!pincode.match(/^[1-9][0-9]{5}$/)) {
+          $("#errorMsg").text("Pincode Should Be 6 Digit!")
+          $("#pincodeId").addClass('bottom-color-red');
+          $("#submitButton").prop("disabled", false);
+          return
+        }
+        else if(!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+          $("#errorMsg").text("Please Enter Valid Email Address!")
+          $("#emailId").addClass('bottom-color-red');
+          $("#submitButton").prop("disabled", false);
+          return
+        }
+        else if(summary.trim()=="") {
+          $("#errorMsg").text("Please Write Something About Your Self!");
+          $("#summaryId").addClass('bottom-color-red');
+          $("#submitButton").prop("disabled", false);
+          return
+        }
+
+        $.ajax({
+            url:'https://api.apispreadsheets.com/data/20740/',
+            type:'post',
+            data:$("#myForm").serializeArray(),
+            success: function(){
+              document.getElementById("myForm").reset()
+              alert("Your Registration Details Submitted Successfully :)")
+              // $.alert({
+              //     title: 'Welcome!',
+              //     content: 'Your Registration Details Submitted Successfully :)',
+              //     type: 'success',
+              //     typeAnimated: true
+              // });
+              $("#submitButton").prop("disabled", false);
+              
+            },
+            error: function(){
+              alert("There was an error :(")
+              $("#submitButton").prop("disabled", false);
+              // $.alert({
+              //     title: 'Error!',
+              //     content: 'There was an error :(',
+              //     type: 'red',
+              //     typeAnimated: true
+              // });
+            }
+        });
+      }
+    
+    </script>
 
 </body>
 
